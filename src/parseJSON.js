@@ -8,17 +8,39 @@ var parseJSON = function(json) {
     throw new Syntaxerror('Please pass a string');
   }
   var skinyJson = json.trim();
-  switch(skinyJson.charAt(0)){
+  switch (skinyJson.charAt(0)) {
     case '"':
-      if(!skinyJson.endsWith('"')){
+      if (!skinyJson.endsWith('"')) {
         throw new Syntaxerror('Please pass a valid String Jerk');
       }
-      return skinyJson.slice(1,-1);
+      return skinyJson.slice(1, -1);
       break;
     case '{':
-      return parseJSON()
-
-
+      if (!skinyJson.endsWith('}')) {
+        throw new Syntaxerror('Please pass a valid object Jerk');
+      }
+      while()
+      return {};
+      break;
+    case '[':
+      if (!skinyJson.endsWith(']')) {
+        throw new Syntaxerror('Please pass a valid Array Jerk');
+      }
+      return [];
+      break;
+    default:
+      if (!isNaN(Number.parseFloat(json))) {
+        return Number.parseFloat(json);
+      } else if (json === 'true') {
+        return true;
+      } else if (json === 'false') {
+        return false;
+      } else if (json === 'null') {
+        return null;
+      } else if (json === 'undefined') {
+        return undefined;
+      } 
+  
 
 
   }
