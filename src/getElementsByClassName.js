@@ -12,11 +12,7 @@ var isClass = function(className, node) {
 };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className, currentDir) { 
-// your code here
-  if (currentDir === undefined) {
-    return getElementsByClassName(className, document.body);
-  }
+var getElementsByClassName = function(className, currentDir = document.body) { 
   var matchedNodes = isClass(className, currentDir);
   var numberOfChildren = currentDir.childNodes.length === 0 ? 0 : 
     currentDir.childNodes.length;
@@ -26,5 +22,4 @@ var getElementsByClassName = function(className, currentDir) {
   }
   matchedNodes.concat(isClass(className, currentDir));
   return matchedNodes;
-   
 };
