@@ -20,6 +20,5 @@ var getElementsByClassName = function(className, currentDir = document.body) {
     matchedNodes = matchedNodes.concat(getElementsByClassName(className, 
       currentDir.childNodes[i]));
   }
-  matchedNodes.concat(isClass(className, currentDir));
   return matchedNodes;
 };
