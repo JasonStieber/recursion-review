@@ -1,3 +1,4 @@
+/*eslint indent: [2, 2, {"SwitchCase": 1}]*/
 // this is what you would do if you liked things to be easy:
 // var stringifyJSON = JSON.stringify;
 
@@ -5,6 +6,7 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
+  console.log(obj);
   switch (typeof obj) {
     case 'boolean':  
     case 'number':
@@ -33,15 +35,19 @@ var stringifyJSON = function(obj) {
         return objectString + ']';
       } else {
         let objectString = '{';
-        for (let i = 0; i < Object.keys(obj).length; i++) {
-          if (Object.keys(obj)[i] === undefined) { return '{}'; }
-          if (objectString !== '{') {
-            objectString += ',';
+        let keys = Object.keys(obj);
+        for (let i = 0; i < keys.length; i++) {
+          if (obj[keys[i]] === undefined || 
+            typeof obj[keys[i]] === 'function' ||
+            Object.keys(obj)[i] === undefined) {
+            continue;
           }
-          objectString += property + ':';
-          objectString += obj[property]; 
+          if (objectString !== '{') { objectString += ','; }
+          objectString += '"' + keys[i] + '":';
+          objectString += stringifyJSON(obj[keys[i]]); 
         }  
         objectString += '}';
+        return objectString;
       }
       break;
     default:
